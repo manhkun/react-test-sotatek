@@ -1,0 +1,35 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "@vue/typescript/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "parser": "@typescript-eslint/parser",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [],
+  "rules": {
+    "max-len": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "no-param-reassign": "off",
+
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      { "allowShortCircuit": true, "allowTernary": true }
+    ],
+    "vue/no-setup-props-destructure": "off",
+    "no-underscore-dangle": "off",
+    "import/no-cycle": "off"
+  }
+}
