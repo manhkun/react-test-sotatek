@@ -1,21 +1,41 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="st-container">
+    <div class="st-wrapper st-flex">
+      <div class="st-wrapper__left st-border-dark">
+        <NewTask />
+      </div>
+      <div class="st-wrapper__right st-border-dark">
+        <TodoList />
+      </div>
+    </div>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script setup lang="ts">
+import NewTask from './components/NewTask.vue';
+import TodoList from './components/TodoList.vue'
+</script>
+
+
+<style lang="scss">
+.st-wrapper {
+  &__left {
+    width: 100%;
+    border-bottom: none;
+
+    @media screen and (min-width: 768px) {
+      width: 40%;
+      border-bottom: 1px solid #000;
+      border-right: none;
+    }
+  }
+
+  &__right {
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+      width: 60%;
+    }
+  }
 }
 </style>
