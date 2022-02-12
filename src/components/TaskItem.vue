@@ -11,10 +11,7 @@
     <div class="st-item__expand st-border-dark" :class="{'is-expand': isExpand}">
       <div class="st-expand__wrapper">
         <div class="st-item__form">
-          <Form />
-        </div>
-        <div class="st-item__button">
-          <button class="st-btn st-btn--fullwidth st-btn--success">Update</button>
+          <Form type="update" :task="task"/>
         </div>
       </div>
     </div>
@@ -23,11 +20,18 @@
 
 <script lang="ts">
 import Form from './Form.vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
+import { ITask } from '../types/Task';
 
 export default defineComponent({
   components: {
     Form
+  },
+  props: {
+    task: {
+      type: Object as PropType<ITask>,
+      required: false
+    },
   },
   setup() {
     const isExpand = ref(false);

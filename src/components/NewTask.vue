@@ -5,30 +5,25 @@
     </div>
 
     <div class="st-newtask__form">
-
-    </div>
-
-    <div class="st-newtask__form">
-      <Form />
-    </div>
-
-    <div class="st-newtask__btn">
-      <button class="st-btn st-btn--fullwidth st-btn--success">Add</button>
+      <Form type="add"/>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import Form from './Form.vue'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  components: {
+    Form,
+  }
+})
 </script>
 
 <style lang="scss">
 .st-newtask {
   padding: 0 20px 20px 20px;
-
-  &__btn {
-    margin-top: 20px;
-  }
 }
 
 </style>
