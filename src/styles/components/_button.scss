@@ -1,0 +1,27 @@
+.st-btn {
+  padding: 10px 20px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.st-btn--fullwidth {
+    width: 100%;
+  }
+
+  &.st-btn--primary {
+    background-color: aqua;
+    color: #fff;
+  }
+
+  &.st-btn--delete {
+    background-color: #f00;
+    color: #fff;
+  }
+
+  &.st-btn--success {
+    background-color: green;
+    color: #fff;
+  }
+}
