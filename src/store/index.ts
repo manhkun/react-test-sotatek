@@ -9,9 +9,12 @@ export const useStore = defineStore('todoList',{
     }
   },
   getters: {
-    getTaskByTitle: (state) => {
-      return (title: string) => state.todoList.filter((task) => task.title === title);
-    }
+    getTask: (state) => {
+      return (title: string) => {
+        console.log(Boolean(title));
+        return state.todoList.filter((task) => Boolean(title) ? task.title === title : true).sort((t1, t2) => t1.dueDate < t2.dueDate ? -1 : 1)};
+    },
+
   },
   actions: {
     addTask(task: ITask) {

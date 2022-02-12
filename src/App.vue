@@ -19,6 +19,7 @@ import TodoList from './components/TodoList.vue'
 
 <style lang="scss">
 .st-wrapper {
+  flex-wrap: wrap;
   &__left {
     width: 100%;
     border-bottom: none;

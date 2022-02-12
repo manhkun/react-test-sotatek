@@ -5,11 +5,11 @@
     </div>
 
     <div class="st-todos__search">
-      <input class="st-border--grey" type="text" placeholder="Search...">
+      <input class="st-border--grey" type="text" placeholder="Search..." v-model="search">
     </div>
 
     <ul class="st-todos__wrapper">
-      <TaskItem v-for="task in todoList" :key="task.id" :task="task"/>
+      <TaskItem v-for="task in getTask(search)" :key="task.id" :task="task"/>
     </ul>
 
     <div class="st-todos__bulk" v-if="tasksChecked.length > 0">
@@ -21,7 +21,7 @@
 <script lang="ts">
 import TaskItem from './TaskItem.vue';
 import BulkAction from './BulkAction.vue';
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
 
@@ -32,11 +32,13 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const { todoList, tasksChecked } = storeToRefs(store);
+    const { tasksChecked } = storeToRefs(store);
+    const search = ref('');
 
     return {
-      todoList,
-      tasksChecked
+      getTask: store.getTask,
+      tasksChecked,
+      search
     }
   },
 })
