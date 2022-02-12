@@ -70,6 +70,7 @@ export default defineComponent({
 
       if (type === 'update') {
         store.updateTask(newTask);
+        console.log(newTask);
       } else {
         store.addTask(newTask);
         resetForm();

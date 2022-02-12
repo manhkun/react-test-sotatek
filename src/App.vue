@@ -32,6 +32,7 @@ import TodoList from './components/TodoList.vue'
 
   &__right {
     width: 100%;
+    position: relative;
 
     @media screen and (min-width: 768px) {
       width: 60%;

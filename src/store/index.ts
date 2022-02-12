@@ -4,7 +4,8 @@ import { defineStore } from 'pinia';
 export const useStore = defineStore('todoList',{
   state: () => {
     return {
-      todoList: JSON.parse(localStorage.getItem('todoList') || '[]') as ITask[]
+      todoList: JSON.parse(localStorage.getItem('todoList') || '[]') as ITask[],
+      tasksChecked: [] as string[]
     }
   },
   getters: {
@@ -18,13 +19,18 @@ export const useStore = defineStore('todoList',{
       localStorage.setItem('todoList', JSON.stringify(this.todoList));
     },
     updateTask(task: ITask) {
-      this.todoList.forEach((t) => {
-        if (t.id === task.id) t = task;
+      this.todoList.forEach((t, index) => {
+        if (t.id === task.id) this.todoList[index] = task;
       });
       localStorage.setItem('todoList', JSON.stringify(this.todoList));
     },
-    removeTasks(ids: string[]) {
-      this.todoList = this.todoList.filter((task) => !ids.includes(task.id));
+    removeTasks(ids?: string[]) {
+      if (ids) {
+        this.todoList = this.todoList.filter((task) => !ids.includes(task.id));
+      } else {
+        this.todoList = this.todoList.filter((task) => !this.tasksChecked.includes(task.id));
+        this.tasksChecked = []
+      }
       localStorage.setItem('todoList', JSON.stringify(this.todoList));
     }
   }
