@@ -1,20 +1,38 @@
 <template>
   <form class="st-form" @submit.prevent="handleSubmitForm">
     <div class="st-form__title">
-      <input class="st-border--grey" type="text" name="title" placeholder="Add new task" v-model="title" required>
+      <input
+        v-model="title" class="st-border--grey"
+        type="text" name="title"
+        placeholder="Add new task" required
+      >
     </div>
     <div class="st-form__desc">
-      <label for="st-form-description">Description</label>
-      <textarea name="description" id="st-form-description" cols="30" rows="10" v-model="description"></textarea>
+      <label for="st-form-description">
+        Description
+      </label>
+      <textarea
+        id="st-form-description" v-model="description"
+        name="description" cols="30"
+        rows="10"
+      />
     </div>
     <div class="st-form__bottom st-flex">
       <div class="st-form__duedate">
-        <label for="st-form-duedate">Due date</label>
-        <input type="date" name="dueDate" id="st-form-duedate" v-model="dueDate" :min="dueDate">
+        <label for="st-form-duedate">
+          Due date
+        </label>
+        <input
+          id="st-form-duedate" v-model="dueDate"
+          type="date" name="dueDate"
+          :min="dueDate"
+        >
       </div>
       <div class="st-form__priority">
-        <label for="">Priority</label>
-        <select name="priority" id="st-form-priority" v-model="priority">
+        <label for="st-form-priority">
+          Priority
+        </label>
+        <select id="st-form-priority" v-model="priority" name="priority">
           <option value="low">Low</option>
           <option value="normal">Normal</option>
           <option value="high">High</option>
@@ -22,7 +40,9 @@
       </div>
     </div>
     <div class="st-form__button">
-      <button class="st-btn st-btn--fullwidth st-btn--success">{{ type }}</button>
+      <button class="st-btn st-btn--fullwidth st-btn--success">
+        {{ type }}
+      </button>
     </div>
   </form>
 </template>
@@ -30,19 +50,20 @@
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue';
 import { ITask } from '../types/Task';
-import { randomID } from '../helpers'
+import { randomID } from '../helpers';
 import { useStore } from '../store';
 
 export default defineComponent({
   props: {
     task: {
       type: Object as PropType<ITask>,
-      required: false
+      required: false,
+      default: {} as ITask,
     },
     type: {
-      type: String as PropType<'add'|'update'>,
-      required: true
-    }
+      type: String as PropType<'add' | 'update'>,
+      required: true,
+    },
   },
   setup({ task, type }) {
     const store = useStore();
@@ -55,18 +76,18 @@ export default defineComponent({
     const resetForm = () => {
       title.value = '';
       description.value = '';
-      dueDate.value = new Date().toISOString().split('T')[0];
+      [dueDate.value] = new Date().toISOString().split('T');
       priority.value = 'normal';
-    }
+    };
 
-    const handleSubmitForm = (e: SubmitEvent) => {
+    const handleSubmitForm = () => {
       const newTask: ITask = {
         id: task?.id || randomID(),
         title: title.value,
         description: description.value,
         dueDate: dueDate.value,
         priority: priority.value,
-      }
+      };
 
       if (type === 'update') {
         store.updateTask(newTask);
@@ -74,19 +95,18 @@ export default defineComponent({
         store.addTask(newTask);
         resetForm();
       }
-    }
+    };
 
     return {
       title,
       description,
       dueDate,
       priority,
-      handleSubmitForm
-    }
-  }
-})
+      handleSubmitForm,
+    };
+  },
+});
 </script>
-
 
 <style lang="scss">
 .st-form {

@@ -1,17 +1,37 @@
 <template>
   <li class="st-task__item">
     <div class="st-item__header st-flex st-border-dark">
-      <input type="checkbox" :value="task?.id" @input="handleTaskChecked($event.target.checked, $event.target.value)" :checked="tasksChecked.includes(String(task?.id))">
-      <div class="st-task__title">{{ task?.title }}</div>
+      <input
+        type="checkbox"
+        :value="task?.id"
+        :checked="tasksChecked.includes(String(task?.id))"
+        @input="handleTaskChecked($event.target.checked, $event.target.value)"
+      >
+      <div class="st-task__title">
+        {{ task?.title }}
+      </div>
       <div class="st-task__buttons">
-        <button class="st-btn st-btn--primary" @click="isExpand = !isExpand">{{isExpand ? 'Collapse' :'Detail'}}</button>
-        <button class="st-btn st-btn--delete" @click="handleRemoveTask">Remove</button>
+        <button
+          class="st-btn st-btn--primary"
+          @click="isExpand = !isExpand"
+        >
+          {{ isExpand ? 'Collapse' :'Detail' }}
+        </button>
+        <button
+          class="st-btn st-btn--delete"
+          @click="handleRemoveTask"
+        >
+          Remove
+        </button>
       </div>
     </div>
-    <div class="st-item__expand st-border-dark" :class="{'is-expand': isExpand}">
+    <div
+      class="st-item__expand st-border-dark"
+      :class="{'is-expand': isExpand}"
+    >
       <div class="st-expand__wrapper">
         <div class="st-item__form">
-          <Form type="update" :task="task"/>
+          <Form type="update" :task="task" />
         </div>
       </div>
     </div>
@@ -19,46 +39,46 @@
 </template>
 
 <script lang="ts">
-import Form from './Form.vue';
 import { defineComponent, PropType, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import Form from './Form.vue';
 import { ITask } from '../types/Task';
 import { useStore } from '../store';
-import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   components: {
-    Form
+    Form,
   },
   props: {
     task: {
       type: Object as PropType<ITask>,
-      required: false
+      required: false,
+      default: {} as ITask,
     },
   },
-  setup({task}) {
+  setup({ task }) {
     const isExpand = ref(false);
     const store = useStore();
     const { tasksChecked } = storeToRefs(store);
 
     const handleRemoveTask = () => {
       store.removeTasks([String(task?.id)]);
-    }
+    };
 
     const handleTaskChecked = (checked: boolean, value: string) => {
       if (checked && !tasksChecked.value.includes(value)) tasksChecked.value.push(value);
       else if (!checked) tasksChecked.value.splice(tasksChecked.value.indexOf(value), 1);
-    }
+    };
 
     return {
       isExpand,
       tasksChecked,
       handleRemoveTask,
-      handleTaskChecked
-    }
+      handleTaskChecked,
+    };
   },
-})
+});
 </script>
-
 
 <style lang="scss">
 .st-task__item {

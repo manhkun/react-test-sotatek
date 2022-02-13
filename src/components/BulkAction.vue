@@ -1,14 +1,22 @@
 <template>
   <div class="st-bulk st-border-dark st-flex">
-    <div class="st-bulk__text">Bulk Action:</div>
+    <div class="st-bulk__text">
+      Bulk Action:
+    </div>
 
     <div class="st-bulk__buttons">
-      <button class="st-btn st-btn--blue">Done</button>
-      <button class="st-btn st-btn--delete" @click="handleRemoveTask">Remove</button>
+      <button class="st-btn st-btn--blue">
+        Done
+      </button>
+      <button
+        class="st-btn st-btn--delete"
+        @click="handleRemoveTask"
+      >
+        Remove
+      </button>
     </div>
   </div>
 </template>
-
 
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -19,13 +27,13 @@ export default defineComponent({
     const store = useStore();
     const handleRemoveTask = () => {
       store.removeTasks();
-    }
+    };
 
     return {
       handleRemoveTask,
-    }
-  }
-})
+    };
+  },
+});
 </script>
 
 <style lang="scss">

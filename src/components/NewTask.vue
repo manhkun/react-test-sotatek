@@ -5,20 +5,20 @@
     </div>
 
     <div class="st-newtask__form">
-      <Form type="add"/>
+      <Form type="add" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Form from './Form.vue';
 import { defineComponent } from 'vue';
+import Form from './Form.vue';
 
 export default defineComponent({
   components: {
-    Form
-  }
-})
+    Form,
+  },
+});
 </script>
 
 <style lang="scss">
