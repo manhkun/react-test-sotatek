@@ -21,7 +21,7 @@
 <script lang="ts">
 import TaskItem from './TaskItem.vue';
 import BulkAction from './BulkAction.vue';
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
 

@@ -3,7 +3,7 @@
     <div class="st-bulk__text">Bulk Action:</div>
 
     <div class="st-bulk__buttons">
-      <button class="st-btn st-btn--blue" @click="isExpand = !isExpand">Done</button>
+      <button class="st-btn st-btn--blue">Done</button>
       <button class="st-btn st-btn--delete" @click="handleRemoveTask">Remove</button>
     </div>
   </div>
@@ -11,20 +11,20 @@
 
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useStore } from '../store'
+import { defineComponent } from 'vue';
+import { useStore } from '../store';
 
 export default defineComponent({
   setup() {
     const store = useStore();
     const handleRemoveTask = () => {
-      store.removeTasks()
+      store.removeTasks();
     }
 
     return {
-      handleRemoveTask
+      handleRemoveTask,
     }
-  },
+  }
 })
 </script>
 

@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import Form from './Form.vue'
-import { defineComponent } from 'vue'
+import Form from './Form.vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
-    Form,
+    Form
   }
 })
 </script>

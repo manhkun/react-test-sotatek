@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import Form from './Form.vue'
-import { defineComponent, PropType, ref } from 'vue'
+import Form from './Form.vue';
+import { defineComponent, PropType, ref } from 'vue';
 import { ITask } from '../types/Task';
 import { useStore } from '../store';
 import { storeToRefs } from 'pinia';
@@ -38,15 +38,15 @@ export default defineComponent({
   setup({task}) {
     const isExpand = ref(false);
     const store = useStore();
-    const { tasksChecked } = storeToRefs(store)
+    const { tasksChecked } = storeToRefs(store);
 
     const handleRemoveTask = () => {
-      store.removeTasks([String(task?.id)])
+      store.removeTasks([String(task?.id)]);
     }
 
     const handleTaskChecked = (checked: boolean, value: string) => {
       if (checked && !tasksChecked.value.includes(value)) tasksChecked.value.push(value);
-      else if (!checked) tasksChecked.value.splice(tasksChecked.value.indexOf(value), 1)
+      else if (!checked) tasksChecked.value.splice(tasksChecked.value.indexOf(value), 1);
     }
 
     return {

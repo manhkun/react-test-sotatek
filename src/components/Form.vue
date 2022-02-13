@@ -56,7 +56,7 @@ export default defineComponent({
       title.value = '';
       description.value = '';
       dueDate.value = new Date().toISOString().split('T')[0];
-      priority.value = 'normal'
+      priority.value = 'normal';
     }
 
     const handleSubmitForm = (e: SubmitEvent) => {
@@ -70,7 +70,6 @@ export default defineComponent({
 
       if (type === 'update') {
         store.updateTask(newTask);
-        console.log(newTask);
       } else {
         store.addTask(newTask);
         resetForm();
@@ -84,7 +83,7 @@ export default defineComponent({
       priority,
       handleSubmitForm
     }
-  },
+  }
 })
 </script>
 
